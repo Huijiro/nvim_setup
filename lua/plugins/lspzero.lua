@@ -8,12 +8,11 @@ return {
       vim.g.lsp_zero_extend_cmp = 0
       vim.g.lsp_zero_extend_lspconfig = 0
     end,
-    dependencies = {
-      { 'hrsh7th/cmp-nvim-lsp' },
-      { 'L3MON4D3/LuaSnip' },
-      { 'williamboman/mason.nvim' },
-      { 'williamboman/mason-lspconfig.nvim' },
-    }
+  },
+  {
+    'williamboman/mason.nvim',
+    lazy = false,
+    config = true
   },
   {
     'hrsh7th/nvim-cmp',
@@ -52,21 +51,27 @@ return {
     cmd = 'LspInfo',
     event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
-      { 'hrsh7th/cmp-nvim-lsp' },
+      {
+        { 'williamboman/mason-lspconfig.nvim' },
+        { 'hrsh7th/cmp-nvim-lsp' },
+      },
     },
     config = function()
       local lsp_zero = require('lsp-zero')
+      lsp_zero.extend_lspconfig()
 
       lsp_zero.on_attach(function(client, bufnr)
-        -- see :help lsp-zero-keybindings
-        -- to learn the available actions
         lsp_zero.default_keymaps({ buffer = bufnr, preserve_mappings = false })
       end)
-      require('mason').setup({})
+
       require('mason-lspconfig').setup({
         ensure_installed = { "lua_ls", "tsserver" },
         handlers = {
           lsp_zero.default_setup,
+          lua_ls = function()
+            local lua_opts = lsp_zero.nvim_lua_ls()
+            require('lspconfig').lua_ls.setup(lua_opts)
+          end,
         },
       })
     end

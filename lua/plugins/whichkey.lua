@@ -12,7 +12,16 @@ return {
       F = { '<cmd>lua vim.lsp.buf.format({async = true})<cr>', 'Format' },
       t = "Terminal",
       h = "Harpoon",
-      g = "Git"
+      g = "Git",
+      w = { ':w<cr>', 'Save' },
+      q = { ':q<cr>', 'Quit' },
+      Q = { ':q!<cr>', 'Force Quit' },
+      b = {
+        "Buffers",
+        h = { ":bprev<cr>", "Previous Buffer" },
+        l = { ":bnext<cr>", "Next Buffer" },
+        c = { ":bdelete<cr>", "Close Buffer" },
+      }
     }, { prefix = "<leader>" })
   end,
   opts = {
