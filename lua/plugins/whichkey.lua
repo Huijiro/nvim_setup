@@ -9,12 +9,10 @@ return {
 
     wk.register({
       f = "Find",
+      F = { '<cmd>lua vim.lsp.buf.format({async = true})<cr>', 'Format' },
       t = "Terminal",
       h = "Harpoon",
-      c = {
-        "Code",
-        f = { '<cmd>lua vim.lsp.buf.format({async = true})<cr>', 'Format' }
-      }
+      g = "Git"
     }, { prefix = "<leader>" })
   end,
   opts = {
