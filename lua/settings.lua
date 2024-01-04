@@ -44,3 +44,8 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrw = 1
+
+vim.o.hidden = false
+vim.o.bufhidden = 'hide'
