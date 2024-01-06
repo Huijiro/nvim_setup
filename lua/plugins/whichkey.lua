@@ -23,6 +23,10 @@ return {
         c = { ":bdelete<cr>", "Close Buffer" },
       }
     }, { prefix = "<leader>" })
+
+    wk.register({
+      jj = { '<esc>', 'Escape', mode = 'i' },
+    })
   end,
   opts = {
   }
