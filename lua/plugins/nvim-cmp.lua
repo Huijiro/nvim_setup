@@ -8,11 +8,11 @@ return {
   'saadparwaiz1/cmp_luasnip',
   'zbirenbaum/copilot.lua',
   'zbirenbaum/copilot-cmp',
+  'windwp/nvim-autopairs',
   {
     'hrsh7th/nvim-cmp',
     config = function()
       local cmp = require('cmp')
-
       require('copilot').setup({
         suggestion = { enabled = false },
         panel = { enabled = false },
@@ -40,6 +40,14 @@ return {
           }),
         })
       })
+
+      require('nvim-autopairs').setup()
+
+      local cmp_autopairs_completion = require('nvim-autopairs.completion.cmp')
+      cmp.event:on(
+        'confirm_done',
+        cmp_autopairs_completion.on_confirm_done()
+      )
     end
   },
 }
