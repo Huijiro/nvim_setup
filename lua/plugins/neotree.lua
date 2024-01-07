@@ -10,16 +10,20 @@ return {
       event_handlers = {
         {
           event = "file_opened",
-          handler = function(file_path)
-            -- auto close
-            -- vimc.cmd("Neotree close")
-            -- OR
+          handler = function()
             require("neo-tree.command").execute({ action = "close" })
           end
         },
       },
       window = {
         position = "right",
+        mappings = {
+          ["W"] = {
+            function(state)
+              os.execute("explorer.exe .")
+            end,
+          }
+        }
       },
       flesystem = {
         hijack_netrw_behavior = "open_current",
