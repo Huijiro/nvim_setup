@@ -18,11 +18,11 @@ return {
       window = {
         position = "right",
         mappings = {
-          ["W"] = {
-            function(state)
-              os.execute("explorer.exe .")
-            end,
-          }
+          ["W"] =
+          function(state)
+            os.execute("explorer.exe .")
+          end,
+
         }
       },
       flesystem = {
