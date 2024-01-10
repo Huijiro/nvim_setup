@@ -28,6 +28,4 @@ return {
       jj = { '<esc>', 'Escape', mode = 'i' },
     })
   end,
-  opts = {
-  }
 }
