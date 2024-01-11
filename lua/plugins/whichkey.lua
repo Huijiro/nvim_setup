@@ -26,6 +26,12 @@ return {
 
     wk.register({
       jj = { '<esc>', 'Escape', mode = 'i' },
+      U = { '<c-r>', 'Redo' },
+      H = { '^', 'Beginning of Line', mode = 'n' },
+      L = { '$', 'End of Line', mode = 'n' },
+      d = { '"_d', 'Delete', mode = 'n' },
+      c = { '"_c', 'Change', mode = 'n' },
+      r = { 'd', 'Replace', mode = 'n' },
     })
   end,
 }
