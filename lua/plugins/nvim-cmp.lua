@@ -4,9 +4,16 @@ return {
   'hrsh7th/cmp-buffer',
   'hrsh7th/cmp-path',
   'hrsh7th/cmp-cmdline',
-  'L3MON4D3/LuaSnip',
+  {
+    'L3MON4D3/LuaSnip',
+    version = "v2.*",
+    build = "make install_jsregexp"
+  },
   'saadparwaiz1/cmp_luasnip',
-  'zbirenbaum/copilot.lua',
+  {
+    'zbirenbaum/copilot.lua',
+    event = "InsertEnter"
+  },
   'onsails/lspkind.nvim',
   {
     'zbirenbaum/copilot-cmp',
@@ -29,9 +36,9 @@ return {
       vim.g.copilot_assume_mapped = true
 
       local has_words_before = function()
-        unpack = unpack or table.unpack
+        if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+        return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
       end
 
       local lspkind = require('lspkind')
@@ -44,11 +51,11 @@ return {
           end
         },
         sources = cmp.config.sources({
-          { name = 'nvim_lsp' },
-          { name = 'copilot' },
-          { name = 'path' },
-          { name = 'buffer' }
-        }),
+          { name = 'nvim_lsp', group_index = 2 },
+          { name = 'copilot',  group_index = 2 },
+          { name = 'path',     group_index = 2 },
+          { name = 'luasnip',  group_index = 2 },
+        }, { name = 'buffer' }),
         mapping = cmp.mapping.preset.insert({
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -58,25 +65,10 @@ return {
             behavior = cmp.ConfirmBehavior.Replace,
             select = false,
           }),
-          ["<CR>"] = cmp.mapping({
-            i = function(fallback)
-              if cmp.visible() and cmp.get_active_entry() then
-                cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
-              else
-                fallback()
-              end
-            end,
-            s = cmp.mapping.confirm({ select = true }),
-            c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-          }),
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
-              if #cmp.get_entries() == 1 then
-                cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
-              else
-                cmp.select_next_item()
-              end
-            elseif luasnip.expand_or_jumpable() then
+              cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+            elseif luasnip.expand_or_locally_jumpable() then
               luasnip.expand_or_jump()
             elseif has_words_before() then
               cmp.complete()
@@ -101,7 +93,11 @@ return {
           }
         },
         formatting = {
-          format = lspkind.cmp_format()
+          format = lspkind.cmp_format({
+            mode = "symbol",
+            max_width = 50,
+            symbol_map = { Copilot = "" }
+          })
         }
       })
 
@@ -110,6 +106,15 @@ return {
         sources = {
           { name = 'buffer' }
         }
+      })
+
+      cmp.setup.cmdline(':', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = 'path' }
+        }, {
+          { name = 'cmdline' }
+        })
       })
 
       require('nvim-autopairs').setup()

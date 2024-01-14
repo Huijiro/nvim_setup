@@ -8,6 +8,7 @@ return {
     { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
     { "<leader>fg", "<cmd>Telescope live_grep<cr>",  desc = "Find grep" },
     { "<leader>fb", "<cmd>Telescope buffers<cr>",    desc = "Find buffers" },
-    { "<leader>fG", "<cmd>Telescope git_status<cr>", desc = "Git status" }
+    { "<leader>fG", "<cmd>Telescope git_status<cr>", desc = "Git status" },
+    { "<leader>fc", "<cmd>Telescope git_commits<cr>", desc = "Git commits"}
   }
 }
