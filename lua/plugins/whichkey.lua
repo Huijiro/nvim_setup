@@ -23,15 +23,5 @@ return {
         c = { ":bdelete<cr>", "Close Buffer" },
       }
     }, { prefix = "<leader>" })
-
-    wk.register({
-      jj = { '<esc>', 'Escape', mode = 'i' },
-      jk = { '<esc>', 'Escape', mode = 'v' },
-      U = { '<c-r>', 'Redo' },
-      H = { '^', 'Beginning of Line', mode = 'n' },
-      L = { '$', 'End of Line', mode = 'n' },
-      ["<C-d>"] = { '<C-d>zz', noremap=true },
-      ["<C-u>"] = { '<C-u>zz', noremap=true }
-    })
   end,
 }

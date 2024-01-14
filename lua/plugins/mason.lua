@@ -21,7 +21,7 @@ return {
           vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
           vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
           vim.keymap.set('n', 'gtd', vim.lsp.buf.type_definition, opts)
-          vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
+          vim.keymap.set('n', 'R', vim.lsp.buf.rename, opts)
           vim.keymap.set({ 'n', 'v' }, 'C', vim.lsp.buf.code_action, { desc = "Code Action", buffer = ev.buf })
           vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
           vim.keymap.set('n', '<space>f', function()

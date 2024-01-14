@@ -25,6 +25,8 @@ vim.o.clipboard = 'unnamedplus'
 vim.o.breakindent = true
 
 -- Save undo history
+vim.opt.swapfile = false
+vim.opt.backup = false
 vim.o.undofile = true
 
 -- Case-insensitive searching UNLESS \C or capital in search
@@ -35,12 +37,24 @@ vim.o.smartcase = true
 vim.wo.signcolumn = 'yes'
 
 -- Decrease update time
-vim.o.updatetime = 250
+vim.o.updatetime = 50
 vim.o.timeoutlen = 300
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+-- Disables netrw completely
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrw = 1
 
+-- Keep cursor fat
+vim.opt.guicursor = ""
+
+-- Disable line wrap
+vim.opt.wrap = false
+
+-- Disable auto commenting new lines
+vim.opt.formatoptions = vim.opt.formatoptions - 'cro'
+
+-- Setup scrolloff
+vim.opt.scrolloff = 8
