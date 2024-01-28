@@ -1,11 +1,39 @@
 return {
   {
-    "williamboman/mason-lspconfig.nvim",
-  }, {
-  {
-    "neovim/nvim-lspconfig",
+    "williamboman/mason.nvim",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "williamboman/mason-lspconfig.nvim",
+    },
     config = function()
-      local lspconfig = require('lspconfig')
+      require("mason").setup()
+      require("mason-lspconfig").setup()
+
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+      require("mason-lspconfig").setup_handlers {
+        -- The first entry (without a key) will be the default handler
+        -- and will be called for each installed server that doesn't have
+        -- a dedicated handler.
+        function(server_name) -- default handler (optional)
+          require("lspconfig")[server_name].setup {
+            capabilities = capabilities
+          }
+        end,
+        ["lua_ls"] = function()
+          local lspconfig = require("lspconfig")
+          lspconfig.lua_ls.setup {
+            capabilities = capabilities,
+            settings = {
+              Lua = {
+                diagnostics = {
+                  globals = { "vim" }
+                }
+              }
+            }
+          }
+        end,
+      }
 
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('UserLspConfig', {}),
@@ -24,33 +52,7 @@ return {
           vim.keymap.set('n', 'R', vim.lsp.buf.rename, opts)
           vim.keymap.set({ 'n', 'v' }, 'C', vim.lsp.buf.code_action, { desc = "Code Action", buffer = ev.buf })
           vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-          vim.keymap.set('n', '<space>f', function()
-            vim.lsp.buf.format { async = true }
-          end, opts)
         end,
       })
-    end
-  }
-},
-  {
-    "williamboman/mason.nvim",
-    config = function()
-      require("mason").setup()
-      require("mason-lspconfig").setup()
-
-      require("mason-lspconfig").setup_handlers {
-        -- The first entry (without a key) will be the default handler
-        -- and will be called for each installed server that doesn't have
-        -- a dedicated handler.
-        function(server_name)  -- default handler (optional)
-          local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-          require("lspconfig")[server_name].setup {
-            capabilities = capabilities
-          }
-        end,
-        -- Next, you can provide a dedicated handler for specific servers.
-        -- For example, a handler override for the `rust_analyzer`:
-      }
     end
   } }

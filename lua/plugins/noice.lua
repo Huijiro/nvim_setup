@@ -1,6 +1,6 @@
 return {
   'folke/noice.nvim',
-  priority = 999,
+  event = "VeryLazy",
   dependencies = {
     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
     "MunifTanjim/nui.nvim",
@@ -9,7 +9,18 @@ return {
     --   If not available, we use `mini` as the fallback
     {
       "rcarriga/nvim-notify",
+      lazy = true,
       opts = {
+        timeout = 3000,
+        max_height = function()
+          return math.floor(vim.o.lines * 0.75)
+        end,
+        max_width = function()
+          return math.floor(vim.o.columns * 0.75)
+        end,
+        on_open = function(win)
+          vim.api.nvim_win_set_config(win, { zindex = 100 })
+        end,
         background_colour = "#000000",
         top_down = false,
       },
@@ -23,22 +34,18 @@ return {
           ["vim.lsp.util.stylize_markdown"] = true,
           ["cmp.entry.get_documentation"] = true,
         },
-        hover = {
-          enabled = false
-        }
       },
       presets = {
-        bottom_search = true, -- use a classic bottom cmdline for search
-        command_palette = true, -- position the cmdline and popupmenu together
+        bottom_search = true,         -- use a classic bottom cmdline for search
+        command_palette = true,       -- position the cmdline and popupmenu together
         long_message_to_split = true, -- long messages will be sent to a split
-        inc_rename = false, -- enables an input dialog for inc-rename.nvim
-        lsp_doc_border = false, -- add a border to hover docs and signature help
       },
     })
     require("telescope").load_extension("noice")
   end,
   keys = {
     { '<leader>fn', '<cmd>:Telescope notify<cr>', desc = "Notifications" },
+    { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
     { '<leader>n',  '<cmd>:Noice dismiss<cr>',    desc = "Dismiss Noitifications" }
   }
 }

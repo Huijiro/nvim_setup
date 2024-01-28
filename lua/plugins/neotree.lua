@@ -17,13 +17,6 @@ return {
       },
       window = {
         position = "right",
-        mappings = {
-          ["W"] =
-          function(state)
-            os.execute("explorer.exe .")
-          end,
-
-        }
       },
       flesystem = {
         hijack_netrw_behavior = "open_current",

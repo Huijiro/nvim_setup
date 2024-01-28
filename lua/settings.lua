@@ -4,9 +4,6 @@ vim.o.hlsearch = false
 -- Make line numbers default
 vim.wo.number = true
 
--- Make line numbers relative
-vim.wo.relativenumber = true
-
 -- Make 2 space indents
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
@@ -52,9 +49,6 @@ vim.opt.guicursor = ""
 
 -- Disable line wrap
 vim.opt.wrap = false
-
--- Disable auto commenting new lines
-vim.opt.formatoptions = vim.opt.formatoptions - 'cro'
 
 -- Setup scrolloff
 vim.opt.scrolloff = 8
