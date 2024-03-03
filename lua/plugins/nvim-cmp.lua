@@ -51,9 +51,7 @@ return {
         sources = cmp.config.sources({
           { name = 'nvim_lsp' },
           { name = 'copilot', group_index = 1, priority = 100 },
-          { name = 'path' },
           { name = 'luasnip' },
-          { name = 'buffer' }
         }),
         mapping = cmp.mapping.preset.insert({
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
