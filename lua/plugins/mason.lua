@@ -50,6 +50,8 @@ return {
           local opts = { buffer = ev.buf }
           vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
           vim.keymap.set('n', 'gd', builtin.lsp_definitions, opts)
+          vim.keymap.set('n', 'gs', builtin.lsp_document_symbols, opts)
+          vim.keymap.set('n', 'gws', builtin.lsp_workspace_symbols, opts)
           vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
           vim.keymap.set('n', 'gi', builtin.lsp_implementations, opts)
           vim.keymap.set('n', 'gtd', builtin.lsp_type_definitions, opts)
