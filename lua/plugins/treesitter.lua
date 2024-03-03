@@ -13,7 +13,7 @@ return {
           end,
           additional_vim_regex_highlighting = false,
         },
-        ensure_installed = { "lua", "vim", "typescript", "json" },
+        ensure_installed = { "lua", "vim", "typescript", "json", "vimdoc", "markdown" },
         sync_install = false,
         autotag = {
           enable = true
