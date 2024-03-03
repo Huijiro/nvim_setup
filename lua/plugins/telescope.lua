@@ -7,14 +7,20 @@ return {
   keys = {
     { "<leader>ff", "<cmd>Telescope find_files<cr>",  desc = "Find files" },
     { "<leader>fg", "<cmd>Telescope live_grep<cr>",   desc = "Find grep" },
+    { "<leader>fB", "<cmd>Telescope git_branches<cr>",    desc = "Find branches" },
     { "<leader>fb", "<cmd>Telescope buffers<cr>",     desc = "Find buffers" },
-    { "<leader>fG", "<cmd>Telescope git_status<cr>",  desc = "Git status" },
+    { "<leader>fs", "<cmd>Telescope git_status<cr>",  desc = "Git status" },
+    { "<leader>fS", "<cmd>Telescope git_stash<cr>",   desc = "Git stash" },
     { "<leader>fc", "<cmd>Telescope git_commits<cr>", desc = "Git commits" },
-    { "<leader>fC", function()
-      require('telescope.builtin').
-          find_files {
-            cwd = vim.fn.stdpath('config')
-          }
-    end, { desc = "Find config files" } }
+    {
+      "<leader>fC",
+      function()
+        require('telescope.builtin').
+            find_files {
+              cwd = vim.fn.stdpath('config')
+            }
+      end,
+      desc = "Find config files"
+    }
   }
 }
