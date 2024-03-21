@@ -22,6 +22,15 @@ return {
             capabilities = vim.tbl_deep_extend('force', capabilities, server.capabilities or {})
           }
         end,
+        ["eslint"] = function()
+          local eslint = require("lspconfig").eslint;
+          eslint.setup {}
+        end,
+        ["svelte"] = function()
+          local svelte = require("lspconfig").svelte;
+          svelte.setup {
+          }
+        end,
         ["lua_ls"] = function()
           local lspconfig = require("lspconfig")
           lspconfig.lua_ls.setup {
@@ -46,13 +55,8 @@ return {
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('UserLspConfig', {}),
         callback = function(ev)
-          -- Enable completion triggered by <c-x><c-o>
-          vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
-
           local builtin = require('telescope.builtin');
 
-          -- Buffer local mappings.
-          -- See `:help vim.lsp.*` for documentation on any of the below functions
           local opts = { buffer = ev.buf }
           vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
           vim.keymap.set('n', 'gd', builtin.lsp_definitions, opts)
