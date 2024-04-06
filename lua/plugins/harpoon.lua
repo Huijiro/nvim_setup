@@ -6,7 +6,7 @@ return {
     'nvim-telescope/telescope.nvim'
   },
   keys = {
-    { '<leader>hx', function() require('harpoon'):list():append() end,                                 desc = "Add file to Harpoon" },
+    { '<leader>hx', function() require('harpoon'):list():add() end,                                 desc = "Add file to Harpoon" },
     { '<leader>hm', function() require('harpoon').ui:toggle_quick_menu(require('harpoon'):list()) end, desc = "Open Harpoon Menu" },
     {
       '<leader>fh',

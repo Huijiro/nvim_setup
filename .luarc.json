@@ -1,13 +1,12 @@
 {
-  "runtime.version": "LuaJIT",
-  "runtime.path": [
-    "lua/?.lua",
-    "lua/?/init.lua"
-  ],
-  "diagnostics.globals": ["vim"],
-  "workspace.checkThirdParty": false,
-  "workspace.library": [
-    "$VIMRUNTIME",
-    "./lua"
-  ]
+  "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+  "runtime.version": "Lua 5.1",
+  "workspace": {
+    "library": ["$VIMRUNTIME/lua"]
+  },
+  "diagnostics": {
+    "enable": true,
+    "libraryFiles": "Disable",
+    "globals": ["vim"]
+  }
 }

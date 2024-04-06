@@ -49,6 +49,3 @@ vim.opt.guicursor = ""
 
 -- Disable line wrap
 vim.opt.wrap = false
-
--- Setup scrolloff
-vim.opt.scrolloff = 8

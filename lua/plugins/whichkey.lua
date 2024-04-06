@@ -11,6 +11,7 @@ return {
       f = "Find",
       t = "Terminal",
       h = "Harpoon",
+      o = "Optional Tools",
       g = "Git",
       w = { ':w<cr>', 'Save' },
       q = { ':q<cr>', 'Quit' },
