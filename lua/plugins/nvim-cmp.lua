@@ -1,27 +1,5 @@
 return {
-  {
-    'zbirenbaum/copilot.lua',
-    event = "InsertEnter",
-    opts = {
-      suggestion = { enabled = false },
-      panel = { enabled = false },
-      filetypes = {
-        markdown = true,
-        help = true,
-      },
-    }
-  },
   'onsails/lspkind.nvim',
-  {
-    'zbirenbaum/copilot-cmp',
-    event = { "InsertEnter", "LspAttach" },
-    fix_pairs = true,
-    opts = {},
-    config = function(_, opts)
-      local copilot_cmp = require("copilot_cmp")
-      copilot_cmp.setup(opts)
-    end
-  },
   'windwp/nvim-autopairs',
   {
     'hrsh7th/nvim-cmp',
@@ -50,7 +28,6 @@ return {
         },
         sources = cmp.config.sources({
           { name = 'nvim_lsp' },
-          { name = 'copilot', priority = 100 },
           { name = 'luasnip' },
         }),
         mapping = cmp.mapping.preset.insert({
