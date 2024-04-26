@@ -26,7 +26,7 @@ return {
     },
     config = true,
     keys = {
-      { "<leader>gg", function() require('neogit').open({ kind = "split" }) end, desc = "Open Neogit" },
+      { "<leader>g", function() require('neogit').open({ kind = "split" }) end, desc = "Open Neogit" },
     }
   }
 }
