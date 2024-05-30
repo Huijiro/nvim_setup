@@ -21,7 +21,9 @@ return {
         },
         sources = cmp.config.sources({
           { name = 'nvim_lsp' },
+          { name = "supermaven" },
           { name = 'luasnip' },
+          { name = 'path' },
         }),
         mapping = cmp.mapping.preset.insert({
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -42,7 +44,7 @@ return {
           format = lspkind.cmp_format({
             mode = "symbol",
             max_width = 50,
-            symbol_map = { Copilot = "" }
+            symbol_map = { Supermaven = "" }
           })
         },
         sorting = defaults.sorting,

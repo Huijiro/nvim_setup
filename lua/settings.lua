@@ -40,10 +40,6 @@ vim.o.timeoutlen = 300
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
--- Disables netrw completely
-vim.g.loaded_netrwPlugin = 1
-vim.g.loaded_netrw = 1
-
 -- Keep cursor fat
 vim.opt.guicursor = ""
 

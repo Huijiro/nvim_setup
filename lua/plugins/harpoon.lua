@@ -31,9 +31,9 @@ return {
     },
     -- { '<C-[>', function() require('harpoon'):list():prev() end },
     -- { '<C-]>', function() require('harpoon'):list():next() end },
-    { '<C-h>', function() require('harpoon'):list():select(1) end },
-    { '<C-j>', function() require('harpoon'):list():select(2) end },
-    { '<C-k>', function() require('harpoon'):list():select(3) end },
-    { '<C-l>', function() require('harpoon'):list():select(4) end },
+    { '<leader>1', function() require('harpoon'):list():select(1) end },
+    { '<leader>2', function() require('harpoon'):list():select(2) end },
+    { '<leader>3', function() require('harpoon'):list():select(3) end },
+    { '<leader>4', function() require('harpoon'):list():select(4) end },
   }
 }
